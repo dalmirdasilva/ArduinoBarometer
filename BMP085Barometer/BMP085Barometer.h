@@ -32,39 +32,58 @@ class BMP085Barometer: public Barometer, public EepromBasedWiredDevice {
     // Pressure at sea level (Pa)
     const float PRESSURE_AT_SEA_LEVEL;
 
-    int ac1;
-    int ac2;
-    int ac3;
-    unsigned int ac4;
-    unsigned int ac5;
-    unsigned int ac6;
-    int b1;
-    int b2;
-    int mb;
-    int mc;
-    int md;
+    short ac1;
+    short ac2;
+    short ac3;
+    unsigned short ac4;
+    unsigned short ac5;
+    unsigned short ac6;
+    short b1;
+    short b2;
+    short mb;
+    short mc;
+    short md;
     long b5;
 
 public:
 
     BMP085Barometer();
 
-    virtual unsigned short getTemperature();
+    /**
+     * Temperature in °C, in steps of 0.1°C.
+     */
+    short getTemperature();
 
-    virtual unsigned short getPressure();
+    /**
+     * Pressure in hPa, in steps of 1Pa (= 0.01hPa = 0.01mbar).
+     */
+    long getPressure();
 
-    virtual unsigned short getAltitude();
+    float getAltitude();
 
 private:
 
+    /**
+     * The 176 bit EEPROM is partitioned in 11 words of 16 bit each. These contain 11 calibration
+     * coefficients. Every sensor module has individual coefficients. Before the first calculation of
+     * temperature and pressure, the master reads out the EEPROM data.
+     * The data communication can be checked by checking that none of the words has the value 0 or 0xFFFF.
+     */
     void readCallibration();
 
     /**
-     * Reads the uncompressed temperatur.
+     * Reads the uncompensated temperature.
+     *
+     * UT = temperature data (16 bit)
      */
-    unsigned int readTemperature();
+    unsigned int readUncompensatedTemperature();
 
-    unsigned long readPressure();
+    /**
+     * Reads the uncompensated pressure.
+     *
+     * UP = pressure data (16 to 19 bit)
+     */
+    unsigned long readUncompensatedPressure();
 };
 
 #endif // __ARDUINO_BAROMETER_DRIVER_BMP085_BAROMETER_H__

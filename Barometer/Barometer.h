@@ -18,17 +18,17 @@ public:
     /**
      * Returns the current temperature.
      */
-    virtual unsigned short getTemperature() = 0;
+    virtual short getTemperature() = 0;
 
     /**
      * Returns the current pressure.
      */
-    virtual unsigned short getPressure() = 0;
+    virtual long getPressure() = 0;
 
     /**
      * Returns the current altitude.
      */
-    virtual unsigned short getAltitude() = 0;
+    virtual float getAltitude() = 0;
 };
 
 #endif // __ARDUINO_BAROMETER_DRIVER_BAROMETER_H__
