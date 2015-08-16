@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 BMP085Barometer::BMP085Barometer()
-        : EepromBasedWiredDevice(BMP085_ADDRESS, 0x01, EepromBasedWiredDevice::BIG_ENDIAN), OSS(0), PRESSURE_AT_SEA_LEVEL(101325) {
+        : EepromBasedWiredDevice(BMP085_ADDRESS, 0x01, EepromBasedWiredDevice::BIG_ENDIAN) {
 
     // 10ms of start-up time after power-up, before first communication
     delay(10);

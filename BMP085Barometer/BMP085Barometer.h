@@ -27,10 +27,12 @@ class BMP085Barometer: public Barometer, public EepromBasedWiredDevice {
      * just set it accordingly at the top of the program. Try changing OSS to 3,
      * does the data become more stable?
      */
-    const unsigned char OSS;
+    const static unsigned char OSS = 0;
 
     // Pressure at sea level (Pa)
-    const float PRESSURE_AT_SEA_LEVEL;
+    const static float PRESSURE_AT_SEA_LEVEL = 101325;
+
+    const static unsigned char MAX_RETRIES_ON_READING = 10;
 
     short ac1;
     short ac2;
