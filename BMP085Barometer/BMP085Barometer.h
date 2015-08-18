@@ -17,7 +17,7 @@
 #define BMP085_ADDRESS          0x77
 
 // https://www.raspberrypi.org/forums/viewtopic.php?t=64618&p=476195
-#define PRESSURE_ADJUSTMENT     673
+#define PRESSURE_ADJUSTMENT     0
 
 class BMP085Barometer: public Barometer, public EepromBasedWiredDevice {
 
