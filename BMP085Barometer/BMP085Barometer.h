@@ -19,6 +19,9 @@
 // https://www.raspberrypi.org/forums/viewtopic.php?t=64618&p=476195
 #define PRESSURE_ADJUSTMENT     0
 
+// Pressure at sea level (Pa)
+#define PRESSURE_AT_SEA_LEVEL	101325 + PRESSURE_ADJUSTMENT
+
 class BMP085Barometer: public Barometer, public EepromBasedWiredDevice {
 
     enum Register {
@@ -56,9 +59,6 @@ class BMP085Barometer: public Barometer, public EepromBasedWiredDevice {
         short mc;
         short md;
     };
-
-    // Pressure at sea level (Pa)
-    const static float PRESSURE_AT_SEA_LEVEL = 101325 + PRESSURE_ADJUSTMENT;
 
     const static unsigned char MAX_RETRIES_ON_READING = 10;
 
